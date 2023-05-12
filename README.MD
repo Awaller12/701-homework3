@@ -23,3 +23,10 @@ Than you can either use the functions independently or run the testing_mphf
 
 Task3 
 
+Task3 greatly builds off Task2 so the two functions created for this task exist in the class MyMPHF and are tested in the function testing_mphf. Running the functions in this class allow you to create a fingerprint array and then query it, given Ks and K's, to gain the false_positve rate
+
+In order to use this class you much make sure to install this library:
+    - pip3 install numpy
+
+Than you can either use the functions independently or run the testing_mphf
+

@@ -39,7 +39,6 @@ def build_kprime(ks: list, string_size: int):
             true_neg += 1
     return ksprimes, true_neg
 
-    return ksprimes
 
 class MyBloomFilter:
     def __init__(self, size, error_rate) -> None:
@@ -76,7 +75,6 @@ class MyBloomFilter:
         print('the false neg in bloom is', false_neg)
         return false_pos
 
-        
 
 def bloom_filter_func(ks: list, error_rate: float, curr_k_list: int, kprime: list, true_neg: int):
 
@@ -103,11 +101,9 @@ def bloom_filter_func(ks: list, error_rate: float, curr_k_list: int, kprime: lis
 
 class MyMPHF:
     def __init__(self, keys: list, num_threads, gamma):
-        #hash keys, add to a list and then pass to PyMPHF
         hashed_keys = []
         for k in keys:
             hashed_val = hash(k) % ((sys.maxsize + 1) * 2)
-            #hashed_val = hashlib.sha256(k.encode('UTF-8'))
             hashed_keys.append(hashed_val)
 
         self.mph = bbhash.PyMPHF(hashed_keys, len(hashed_keys), num_threads, gamma)
@@ -173,10 +169,6 @@ class MyMPHF:
 
 
 
-
-
-        
-
 def testing_mphf(ks, ksprime, curr_k_list: int, true_neg: int):
     mph = MyMPHF(ks, 1, 1.0)
 
@@ -190,12 +182,11 @@ def testing_mphf(ks, ksprime, curr_k_list: int, true_neg: int):
 
     false_positive = mph.get_false_positives(query_bbhash, ks, ksprime, true_neg)
 
-    #print('time for MPHF to run ks', curr_k_list, 'was', runtime, 'for list', curr_k_list)
+    print('time for MPHF to run ks', curr_k_list, 'was', runtime, 'for list', curr_k_list)
 
-    #fix this line becasue it also outputs the same thing
-    #print('size of MPHF for list', curr_k_list, 'in size', asizeof.asizeof(mph.mph))
+    print('size of MPHF for list', curr_k_list, 'in size', asizeof.asizeof(mph.mph))
 
-    #print('false positive for MPHF', curr_k_list, 'is', false_positive)
+    print('false positive for MPHF', curr_k_list, 'is', false_positive)
 
 
     start = time.time()
@@ -248,32 +239,32 @@ if __name__ == '__main__':
     curr_k_list = 1
     
 
-    # bloom_filter_func(ks1, 0.0078125, curr_k_list, kprime1, true_neg1)
-    # bloom_filter_func(ks1, 0.00390625, curr_k_list, kprime1, true_neg1)
-    # bloom_filter_func(ks1, 0.0009765625, curr_k_list, kprime1, true_neg1)
+    bloom_filter_func(ks1, 0.0078125, curr_k_list, kprime1, true_neg1)
+    bloom_filter_func(ks1, 0.00390625, curr_k_list, kprime1, true_neg1)
+    bloom_filter_func(ks1, 0.0009765625, curr_k_list, kprime1, true_neg1)
     testing_mphf(ks1, kprime1, curr_k_list, true_neg1)
     print("   ")
     print("   ")
     print("   ")
     curr_k_list += 1
-    # bloom_filter_func(ks2, 0.0078125, curr_k_list, kprime2, true_neg2)
-    # bloom_filter_func(ks2, 0.00390625, curr_k_list, kprime2, true_neg2)
-    # bloom_filter_func(ks2, 0.0009765625, curr_k_list, kprime2, true_neg2)
+    bloom_filter_func(ks2, 0.0078125, curr_k_list, kprime2, true_neg2)
+    bloom_filter_func(ks2, 0.00390625, curr_k_list, kprime2, true_neg2)
+    bloom_filter_func(ks2, 0.0009765625, curr_k_list, kprime2, true_neg2)
     testing_mphf(ks2, kprime2, curr_k_list, true_neg2)
     print("   ")
     print("   ")
     print("   ")
     curr_k_list += 1
-    # bloom_filter_func(ks3, 0.0078125, curr_k_list, kprime3, true_neg3)
-    # bloom_filter_func(ks3, 0.00390625, curr_k_list, kprime3, true_neg3)
-    # bloom_filter_func(ks3, 0.0009765625, curr_k_list, kprime3, true_neg3)
+    bloom_filter_func(ks3, 0.0078125, curr_k_list, kprime3, true_neg3)
+    bloom_filter_func(ks3, 0.00390625, curr_k_list, kprime3, true_neg3)
+    bloom_filter_func(ks3, 0.0009765625, curr_k_list, kprime3, true_neg3)
     testing_mphf(ks3, kprime3, curr_k_list, true_neg3)
     print("   ")
     print("   ")
     print("   ")
     curr_k_list += 1
-    # bloom_filter_func(ks4, 0.0078125, curr_k_list, kprime4, true_neg4)
-    # bloom_filter_func(ks4, 0.00390625, curr_k_list, kprime4, true_neg4)
-    # bloom_filter_func(ks4, 0.0009765625, curr_k_list, kprime4, true_neg4)
+    bloom_filter_func(ks4, 0.0078125, curr_k_list, kprime4, true_neg4)
+    bloom_filter_func(ks4, 0.00390625, curr_k_list, kprime4, true_neg4)
+    bloom_filter_func(ks4, 0.0009765625, curr_k_list, kprime4, true_neg4)
     testing_mphf(ks4, kprime4, curr_k_list, true_neg4)
 
